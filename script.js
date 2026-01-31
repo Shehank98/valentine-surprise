@@ -20,6 +20,13 @@ const photoFiles = [
 'https://drive.google.com/thumbnail?id=1Zahxs0aQJWPZgTthUQ2JuCGvU5JF60HB&sz=w2000',
 'https://drive.google.com/thumbnail?id=1maT-uWj-5w0LufeFVJIWA1IphtIY8fZK&sz=w2000',
 'https://drive.google.com/thumbnail?id=1BnLT7PKSgubUp5AJA5zbT7WYMrd5WueV&sz=w2000',
+'https://drive.google.com/thumbnail?id=1AawQfRS8-IABWqDVXJcWcyluav18iD5C&sz=w2000',
+'https://drive.google.com/thumbnail?id=1Zaf-cTXx4yc5EklWNglwMo4pwto_gvc9&sz=w2000',
+'https://drive.google.com/thumbnail?id=1fA2QfBIXBOWnfY4rXnln4Zg5pVYnWIXc&sz=w2000',
+'https://drive.google.com/thumbnail?id=1dDACy0WfupW7IOVU_0YmPbvccLGIpTII&sz=w2000',
+'https://drive.google.com/thumbnail?id=1T2M-MTd9bgn4nTirzaJLHIio_DYNXHh9&sz=w2000',
+'https://drive.google.com/thumbnail?id=1yTTqjfdr_Lh0HEByQUqL-EU8yb6LADhx&sz=w2000',
+'https://drive.google.com/thumbnail?id=1HMlJcaxZks2UvZD7480aDvz2AleIR2SL&sz=w2000',
 ];
 
 let photosLoaded = 12; // Initial number of photos to display
