@@ -355,7 +355,7 @@ font-size: 1rem;
 color: var(--accent);
 }
 
-/* Gallery Section - MASONRY (NO COMPLEX ANIMATIONS) */
+/* Gallery Section - MASONRY WITH ALTERNATING ANIMATIONS */
 .gallery-section {
 background: var(--dark);
 padding: 6rem 0;
@@ -377,24 +377,22 @@ cursor: pointer;
 transition: all 0.3s ease;
 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 background: #000;
-/* REMOVED opacity: 0 - images show immediately */
-opacity: 1;
+/* Initial state - hidden for animation */
+opacity: 0;
 }
 
-/* Simple fade-in on load */
-.gallery-item {
-animation: simpleFadeIn 0.5s ease-out;
+/* Animation classes */
+.gallery-item.slide-up {
+animation: slideUpSlow 1.2s ease-out forwards;
 }
 
-@keyframes simpleFadeIn {
-from {
-    opacity: 0;
-    transform: translateY(20px);
+.gallery-item.slide-down {
+animation: slideDownSlow 1.2s ease-out forwards;
 }
-to {
-    opacity: 1;
-    transform: translateY(0);
-}
+
+/* Fallback for items that don't get animation class (MOBILE FIX) */
+.gallery-item.loaded {
+opacity: 1 !important;
 }
 
 /* Hover overlay effect */
@@ -737,15 +735,38 @@ to {
 }
 }
 
-/* Simple fade in animation */
-@keyframes simpleFadeIn {
-from {
+/* Gallery Row Animations - Slow and Smooth */
+@keyframes slideUpSlow {
+0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(80px);
 }
-to {
+100% {
     opacity: 1;
     transform: translateY(0);
+}
+}
+
+@keyframes slideDownSlow {
+0% {
+    opacity: 0;
+    transform: translateY(-80px);
+}
+100% {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+/* Simple fade in as fallback for mobile */
+@keyframes fadeInGallery {
+0% {
+    opacity: 0;
+    transform: scale(0.95);
+}
+100% {
+    opacity: 1;
+    transform: scale(1);
 }
 }
 
