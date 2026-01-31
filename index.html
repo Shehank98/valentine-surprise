@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day My Love ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container" id="heartsContainer"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="glowing-text">Happy Valentine's Day</h1>
+            <h2 class="subtitle">To My Beautiful Love</h2>
+            <p class="hero-quote">"In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine."</p>
+            <button class="btn-main" onclick="scrollToGallery()">
+                <span>See Our Memories</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- Love Message Section -->
+    <section class="message-section">
+        <div class="container">
+            <div class="message-card slide-up">
+                <h2 class="section-title">Every Moment With You...</h2>
+                <p class="message-text">
+                    From the moment I met you, my life has been filled with colors I never knew existed. 
+                    You are my sunshine on cloudy days, my comfort in difficult times, and my greatest blessing.
+                    Every laugh we share, every adventure we take, every quiet moment together - they all mean the world to me.
+                </p>
+                <div class="love-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="365">0</div>
+                        <div class="stat-label">Days of Smiles</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="1000000">0</div>
+                        <div class="stat-label">Reasons I Love You</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="1">0</div>
+                        <div class="stat-label">Perfect Person for Me</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title glow">Our Beautiful Journey</h2>
+            <p class="section-subtitle">Every picture tells our story ❤️</p>
+            
+            <div class="gallery-grid">
+                <!-- Photos will be loaded here by JavaScript -->
+            </div>
+            
+            <div class="gallery-controls">
+                <button class="btn-secondary" onclick="loadMorePhotos()">
+                    <span>Load More Memories</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reasons I Love You Section -->
+    <section class="reasons-section">
+        <div class="container">
+            <h2 class="section-title">Why I Love You</h2>
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">💖</div>
+                    <h3>Your Beautiful Smile</h3>
+                    <p>It lights up my entire world and makes everything better</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">✨</div>
+                    <h3>Your Kind Heart</h3>
+                    <p>The way you care for others inspires me every single day</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🌟</div>
+                    <h3>Your Laugh</h3>
+                    <p>It's the most beautiful sound I've ever heard</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">💝</div>
+                    <h3>Your Support</h3>
+                    <p>You believe in me even when I don't believe in myself</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🌹</div>
+                    <h3>Your Beauty</h3>
+                    <p>Inside and out, you're absolutely stunning</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🎀</div>
+                    <h3>Everything About You</h3>
+                    <p>You're simply perfect for me in every way</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Message Section -->
+    <section class="interactive-section">
+        <div class="container">
+            <h2 class="section-title">A Special Message For You</h2>
+            <div class="message-box" id="messageBox">
+                <p class="locked-message">💌 Click the button below to reveal my message 💌</p>
+                <div class="hidden-message" id="hiddenMessage">
+                    <p class="special-message">
+                        My Dearest Love,<br><br>
+                        Words cannot express how much you mean to me. You are my dream come true, 
+                        my partner in everything, and my greatest love. Thank you for choosing me, 
+                        for loving me, and for making every day an adventure.<br><br>
+                        I promise to love you today, tomorrow, and forever.<br><br>
+                        You are my always and forever. ❤️<br><br>
+                        Happy Valentine's Day, my beautiful love!
+                    </p>
+                </div>
+            </div>
+            <button class="btn-reveal" id="revealBtn" onclick="revealMessage()">
+                <span>💝 Reveal Message 💝</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Final Section -->
+    <section class="final-section">
+        <div class="container">
+            <div class="final-card">
+                <h2 class="final-title">I Love You More Than Words Can Say</h2>
+                <p class="final-message">Thank you for being you. Thank you for being mine. ❤️</p>
+                <div class="signature">Forever Yours</div>
+                <button class="btn-heart" onclick="showHeartExplosion()">
+                    <span>Send Love 💕</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heart Explosion Overlay -->
+    <div class="heart-explosion" id="heartExplosion"></div>
+
+    <!-- Lightbox for photos -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <button class="lightbox-nav prev" onclick="navigatePhoto(-1)">&#10094;</button>
+        <button class="lightbox-nav next" onclick="navigatePhoto(1)">&#10095;</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

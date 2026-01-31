@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Down... 💝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 23, 68, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Floating Hearts */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float-up 8s ease-in infinite;
+            opacity: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            width: 90%;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .countdown-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 64, 129, 0.3);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-title {
+            font-size: clamp(2rem, 6vw, 4rem);
+            background: linear-gradient(135deg, #ff1744 0%, #ff4081 50%, #ff80ab 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            animation: glow 2s ease-in-out infinite alternate;
+            font-weight: 700;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(255, 23, 68, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 40px rgba(255, 23, 68, 0.8));
+            }
+        }
+
+        .message-text {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .quote {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: #ff80ab;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: rgba(255, 64, 129, 0.1);
+            border-left: 4px solid #ff4081;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .time-unit {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem 1rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 64, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .time-unit:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 64, 129, 0.2);
+            border-color: #ff4081;
+            box-shadow: 0 10px 30px rgba(255, 23, 68, 0.3);
+        }
+
+        .time-value {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff1744 0%, #ff4081 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .time-label {
+            font-size: 1rem;
+            color: #ff80ab;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 3rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            height: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 64, 129, 0.3);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff1744 0%, #ff4081 50%, #ff80ab 100%);
+            border-radius: 50px;
+            width: 0%;
+            transition: width 1s ease;
+            box-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
+        }
+
+        .progress-text {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Footer Message */
+        .footer-message {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 64, 129, 0.1);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 64, 129, 0.2);
+        }
+
+        .footer-message h3 {
+            color: #ff80ab;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-message p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Loading Animation for when countdown ends */
+        .reveal-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff1744 0%, #ff4081 50%, #ff80ab 100%);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .reveal-animation.active {
+            display: flex;
+            animation: revealIn 1s ease;
+        }
+
+        @keyframes revealIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .reveal-text {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 2rem;
+            animation: pulse 1s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .countdown-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .countdown {
+                gap: 1rem;
+            }
+
+            .time-unit {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .time-value {
+                font-size: 2.5rem;
+            }
+
+            .time-label {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation"></div>
+
+    <!-- Floating Hearts -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="countdown-card">
+            <h1 class="main-title">✨ Something Magical is Coming ✨</h1>
+            
+            <p class="message-text">
+                Hey beautiful! I've created something very special just for you.
+                It's a journey through our memories, our love, and everything you mean to me.
+            </p>
+
+            <div class="quote">
+                "The best and most beautiful things in this world cannot be seen or even heard,
+                but must be felt with the heart." — Helen Keller
+            </div>
+
+            <h2 style="color: #ff80ab; font-size: 1.5rem; margin-bottom: 1rem;">
+                💝 The Big Reveal In 💝
+            </h2>
+
+            <!-- Countdown Timer -->
+            <div class="countdown">
+                <div class="time-unit">
+                    <span class="time-value" id="days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="hours">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="minutes">00</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="seconds">00</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p class="progress-text" id="progressText">Loading your surprise...</p>
+
+            <!-- Footer Message -->
+            <div class="footer-message">
+                <h3>💌 A Note While You Wait</h3>
+                <p>
+                    Every second of this countdown brings us closer to Valentine's Day,
+                    and closer to the moment I get to show you just how much you mean to me.
+                    This website is filled with our memories, my feelings, and all the reasons
+                    why you're the most amazing person in my life. Get ready for something beautiful! ❤️
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reveal Animation -->
+    <div class="reveal-animation" id="revealAnimation">
+        <div class="reveal-text">💝 Happy Valentine's Day! 💝</div>
+        <div style="font-size: 1.5rem; color: white;">Preparing your surprise...</div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION
+        // ============================================
+        // SET YOUR TARGET DATE: February 14, 2025 at 00:00 (midnight)
+        const TARGET_DATE = new Date('2025-01-31T23:30:00').getTime();
+        
+        // Where to redirect when countdown reaches zero
+        const REDIRECT_URL = 'index.html';
+
+        // Time when countdown started (for progress bar calculation)
+        const START_DATE = new Date().getTime();
+
+        // ============================================
+        // CHECK ACCESS
+        // ============================================
+        // Verify user came from email gate
+        window.addEventListener('load', function() {
+            const accessGranted = sessionStorage.getItem('accessGranted');
+            if (!accessGranted) {
+                // Redirect back to email gate if no access
+                window.location.href = 'email-gate.html';
+            }
+        });
+
+        // ============================================
+        // FLOATING HEARTS
+        // ============================================
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartSymbols = ['❤️', '💕', '💖', '💗', '💝', '💓'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 8000);
+            }, 500);
+        }
+
+        createFloatingHearts();
+
+        // ============================================
+        // COUNTDOWN TIMER
+        // ============================================
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = TARGET_DATE - now;
+
+            // Check if countdown is finished
+            if (distance < 0) {
+                // COUNTDOWN FINISHED!
+                document.querySelector('.countdown-card').style.display = 'none';
+                document.getElementById('revealAnimation').classList.add('active');
+                
+                // Redirect after 3 seconds
+                setTimeout(() => {
+                    window.location.href = REDIRECT_URL;
+                }, 3000);
+                
+                return;
+            }
+
+            // Calculate time units
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update display
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            // Update progress bar
+            const totalDuration = TARGET_DATE - START_DATE;
+            const elapsed = now - START_DATE;
+            const progress = Math.min((elapsed / totalDuration) * 100, 100);
+            
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // Update progress text
+            const daysText = days > 0 ? `${days} day${days !== 1 ? 's' : ''}` : '';
+            const hoursText = hours > 0 ? `${hours} hour${hours !== 1 ? 's' : ''}` : '';
+            const minutesText = minutes > 0 ? `${minutes} minute${minutes !== 1 ? 's' : ''}` : '';
+            
+            let timeRemaining = '';
+            if (days > 0) {
+                timeRemaining = `${daysText} and ${hoursText} remaining`;
+            } else if (hours > 0) {
+                timeRemaining = `${hoursText} and ${minutesText} remaining`;
+            } else if (minutes > 0) {
+                timeRemaining = `${minutesText} remaining`;
+            } else {
+                timeRemaining = `Less than a minute remaining!`;
+            }
+            
+            document.getElementById('progressText').textContent = timeRemaining;
+
+            // Add pulsing effect when time is almost up
+            if (days === 0 && hours === 0 && minutes < 5) {
+                document.querySelectorAll('.time-unit').forEach(unit => {
+                    unit.style.animation = 'pulse 1s infinite';
+                });
+            }
+        }
+
+        // Add pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0%, 100% {
+                    transform: scale(1);
+                    box-shadow: 0 0 0 rgba(255, 64, 129, 0);
+                }
+                50% {
+                    transform: scale(1.05);
+                    box-shadow: 0 0 30px rgba(255, 64, 129, 0.5);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ============================================
+        // PARTICLE EFFECT ON CLICK
+        // ============================================
+        document.addEventListener('click', function(e) {
+            const symbols = ['❤️', '💕', '💖', '✨'];
+            
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement('div');
+                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                particle.style.position = 'fixed';
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                particle.style.fontSize = '20px';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '9999';
+                
+                const angle = (Math.random() * Math.PI * 2);
+                const velocity = 50 + Math.random() * 50;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 1000,
+                    easing: 'ease-out'
+                });
+                
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1000);
+            }
+        });
+    </script>
+</body>
+</html>
