@@ -357,13 +357,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Add parallax effect to hero section
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.transform = 'translateY(' + scrolled * 0.5 + 'px)';
-    }
-});
+//window.addEventListener('scroll', function() {
+  //  const scrolled = window.pageYOffset;
+    //const hero = document.querySelector('.hero');
+    //if (hero) {
+      //  hero.style.transform = 'translateY(' + scrolled * 0.5 + 'px)';
+    //}
+//});
 
 // Prevent image dragging
 document.addEventListener('DOMContentLoaded', function() {
