@@ -29,13 +29,29 @@
 // Force image loading with better error handling
 const photoFiles = [
 'https://drive.google.com/thumbnail?id=1AawQfRS8-IABWqDVXJcWcyluav18iD5C&sz=w2000',
-'https://drive.google.com/thumbnail?id=1AawQfRS8-IABWqDVXJcWcyluav18iD5C&sz=w2000',
 'https://drive.google.com/thumbnail?id=1Zaf-cTXx4yc5EklWNglwMo4pwto_gvc9&sz=w2000',
 'https://drive.google.com/thumbnail?id=1fA2QfBIXBOWnfY4rXnln4Zg5pVYnWIXc&sz=w2000',
 'https://drive.google.com/thumbnail?id=1dDACy0WfupW7IOVU_0YmPbvccLGIpTII&sz=w2000',
 'https://drive.google.com/thumbnail?id=1T2M-MTd9bgn4nTirzaJLHIio_DYNXHh9&sz=w2000',
 'https://drive.google.com/thumbnail?id=1yTTqjfdr_Lh0HEByQUqL-EU8yb6LADhx&sz=w2000',
 'https://drive.google.com/thumbnail?id=1HMlJcaxZks2UvZD7480aDvz2AleIR2SL&sz=w2000',
+'https://drive.google.com/thumbnail?id=1Gsx-TZZr3tmLVjSlSPKW0k72Q7O3qAm-&sz=w2000',
+'https://drive.google.com/thumbnail?id=1vmEJmSWsAg3zFxbGeVh8prVNNFpwz5_2&sz=w2000',
+'https://drive.google.com/thumbnail?id=1g11Fd7hzNqnlpsA2wcCT3Cis6XDIzKRu&sz=w2000',
+'https://drive.google.com/thumbnail?id=1xzsj4z0TuSOsKVmbqhF2keahwTHNwc1k&sz=w2000',
+'https://drive.google.com/thumbnail?id=1XD-CLif9BUDufuLNP4GpyZO7EKegWpk6&sz=w2000',
+'https://drive.google.com/thumbnail?id=1Q75O1Grgb6Ii5LoL8L6EWxnnWsb_FFtW&sz=w2000',
+'https://drive.google.com/thumbnail?id=12xhpo6DBgfOzybzbBA_8HCmf_LKu8JF7&sz=w2000',
+'https://drive.google.com/thumbnail?id=1YWNPHMtWrBYfWen4YN0Qo7YGcx-_ynUY&sz=w2000',
+'https://drive.google.com/thumbnail?id=1qF0e2IyEQoKs67OpQVMgnlOkYY-LCCsz&sz=w2000',
+'https://drive.google.com/thumbnail?id=1qwa54bdvf_sKU0yqK98Lsy4cEeZYC-W3&sz=w2000',
+'https://drive.google.com/thumbnail?id=14o8R-KxrDzziAsx1X8WxSAkwwJ3eAqry&sz=w2000',
+'https://drive.google.com/thumbnail?id=1L5pc_QX8pnuTLGnZSADWqSLToSq0mO1Q&sz=w2000',
+'https://drive.google.com/thumbnail?id=1ORif5Od43UFC6JYp2Ram-FrwaAT6P0Sw&sz=w2000',
+'https://drive.google.com/thumbnail?id=1rK8ftI0EsFO2CMwU7pcuajMQgjIMfZZ1&sz=w2000',
+'https://drive.google.com/thumbnail?id=1Zahxs0aQJWPZgTthUQ2JuCGvU5JF60HB&sz=w2000',
+'https://drive.google.com/thumbnail?id=1maT-uWj-5w0LufeFVJIWA1IphtIY8fZK&sz=w2000',
+'https://drive.google.com/thumbnail?id=1BnLT7PKSgubUp5AJA5zbT7WYMrd5WueV&sz=w2000',
 ];
 
 // METHOD B: Direct Image URLs (Imgur, Cloudinary, etc.)
