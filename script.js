@@ -28,15 +28,15 @@
 // METHOD A: Google Drive Links (EASIEST & RECOMMENDED)
 // Force image loading with better error handling
 const photoFiles = [
- 'https://drive.google.com/uc?export=view&id=1AawQfRS8-IABWqDVXJcWcyluav18iD5C',
- 'https://drive.google.com/uc?export=view&id=1AawQfRS8-IABWqDVXJcWcyluav18iD5C',
- 'https://drive.google.com/uc?export=view&id=1Zaf-cTXx4yc5EklWNglwMo4pwto_gvc9',
- 'https://drive.google.com/uc?export=view&id=1fA2QfBIXBOWnfY4rXnln4Zg5pVYnWIXc',
- 'https://drive.google.com/uc?export=view&id=1dDACy0WfupW7IOVU_0YmPbvccLGIpTII',
- 'https://drive.google.com/uc?export=view&id=1T2M-MTd9bgn4nTirzaJLHIio_DYNXHh9',
- 'https://drive.google.com/uc?export=view&id=1yTTqjfdr_Lh0HEByQUqL-EU8yb6LADhx',
- 'https://drive.google.com/uc?export=view&id=1HMlJcaxZks2UvZD7480aDvz2AleIR2SL',
-].map(url => url + '&timestamp=' + new Date().getTime()); // Add cache buster
+'https://drive.google.com/thumbnail?id=1AawQfRS8-IABWqDVXJcWcyluav18iD5C&sz=w2000',
+'https://drive.google.com/thumbnail?id=1AawQfRS8-IABWqDVXJcWcyluav18iD5C&sz=w2000',
+'https://drive.google.com/thumbnail?id=1Zaf-cTXx4yc5EklWNglwMo4pwto_gvc9&sz=w2000',
+'https://drive.google.com/thumbnail?id=1fA2QfBIXBOWnfY4rXnln4Zg5pVYnWIXc&sz=w2000',
+'https://drive.google.com/thumbnail?id=1dDACy0WfupW7IOVU_0YmPbvccLGIpTII&sz=w2000',
+'https://drive.google.com/thumbnail?id=1T2M-MTd9bgn4nTirzaJLHIio_DYNXHh9&sz=w2000',
+'https://drive.google.com/thumbnail?id=1yTTqjfdr_Lh0HEByQUqL-EU8yb6LADhx&sz=w2000',
+'https://drive.google.com/thumbnail?id=1HMlJcaxZks2UvZD7480aDvz2AleIR2SL&sz=w2000',
+];
 
 // METHOD B: Direct Image URLs (Imgur, Cloudinary, etc.)
 // const photoFiles = [
