@@ -29,7 +29,7 @@ const photoFiles = [
 'https://drive.google.com/thumbnail?id=1HMlJcaxZks2UvZD7480aDvz2AleIR2SL&sz=w2000',
 ];
 
-let photosLoaded = 12; // Initial number of photos to display
+let photosLoaded = 18; // Initial number of photos to display
 let currentPhotoIndex = 0;
 
 // Initialize everything when page loads
