@@ -388,7 +388,7 @@
         const TARGET_DATE = new Date('2025-01-31T23:30:00').getTime();
         
         // Where to redirect when countdown reaches zero
-        const REDIRECT_URL = 'index.html';
+        const REDIRECT_URL = 'main.html';
 
         // Time when countdown started (for progress bar calculation)
         const START_DATE = new Date().getTime();
@@ -401,7 +401,7 @@
             const accessGranted = sessionStorage.getItem('accessGranted');
             if (!accessGranted) {
                 // Redirect back to email gate if no access
-                window.location.href = 'email-gate.html';
+                window.location.href = 'index.html';
             }
         });
 
