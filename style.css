@@ -16,17 +16,10 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-    background-attachment: fixed;
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-start; /* Changed from 'center' to 'flex-start' */
-    justify-content: center;
-    color: white;
-    overflow-y: auto;
+    background: var(--dark);
+    color: var(--light);
     overflow-x: hidden;
-    position: relative;
-    padding: 2rem 0;
+    line-height: 1.6;
 }
 
 /* Floating Hearts Background */
@@ -272,13 +265,9 @@ body {
 
 /* Container */
 .container {
-    position: relative;
-    z-index: 10;
-    max-width: 900px;
-    width: 90%;
-    text-align: center;
-    padding: 2rem;
-    margin: auto; /* Centers the container */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
 }
 
 /* Section Titles */
