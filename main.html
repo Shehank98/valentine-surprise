@@ -403,6 +403,170 @@
         </div>
     </section>
 
+    <!-- ========================================== -->
+<!-- FINAL CONFESSION SECTION - ADD BEFORE FINAL SECTION -->
+<!-- ========================================== -->
+<section class="final-confession-section">
+    <div class="container">
+        <h2 class="section-title">Now... Let Me Tell You How I Really Feel</h2>
+        <div class="confession-card">
+            <div class="confession-content">
+                <p class="confession-text">
+                    Supuni,<br><br>
+                    
+                    You've seen everything now. The photos, the letters, the memories, the music.<br>
+                    You've seen how much effort I put into this.<br>
+                    You know how I feel.<br><br>
+                    
+                    But let me be crystal clear:<br><br>
+                    
+                    <strong>I know you've been pushing me away.</strong><br>
+                    I know you said you "can't give hopes."<br>
+                    I know you're scared of getting hurt again.<br>
+                    I know you think it's easier to run than to risk it.<br><br>
+                    
+                    But here's what I know even more:<br><br>
+                    
+                    <strong>I know the way you look at me</strong> when you think I'm not watching.<br>
+                    <strong>I know how your smile changes</strong> when I'm around.<br>
+                    <strong>I know the butterflies you feel</strong> - the same ones I feel.<br>
+                    <strong>I know you feel this too</strong> - you're just too scared to admit it.<br><br>
+                    
+                    You're not protecting me by pushing me away.<br>
+                    <strong>You're protecting yourself from something that could be beautiful.</strong><br><br>
+                    
+                    I spent <strong>12+ hours</strong> creating this website.<br>
+                    I collected <strong>24 photos</strong> of you.<br>
+                    I wrote <strong>6 letters</strong> for different moments you might need me.<br>
+                    I chose <strong>3 songs</strong> that remind me of you.<br>
+                    I created <strong>a star map</strong> of the night we met.<br><br>
+                    
+                    <strong>I did all of this because I'm not giving up on you.</strong><br>
+                    Not on us. Not on what we could be.<br><br>
+                    
+                    So here's my final question to you:<br><br>
+                    
+                    <span class="confession-question">
+                        Are you going to keep running from this?<br>
+                        Or are you brave enough to see where it goes?
+                    </span><br><br>
+                    
+                    I'm not asking for forever.<br>
+                    I'm not asking you to have all the answers.<br>
+                    I'm not asking you to not be scared.<br><br>
+                    
+                    <strong class="confession-highlight">I'm asking for ONE chance.</strong><br>
+                    <strong class="confession-highlight">Just. One. Chance.</strong><br><br>
+                    
+                    To show you that I'm worth the risk.<br>
+                    To prove that we could be something amazing.<br>
+                    To make you believe in us the way I do.<br><br>
+                    
+                    <strong>So what's it going to be, Supuni?</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================== -->
+<!-- YOUR TURN - RESPONSE SECTION -->
+<!-- ========================================== -->
+<section class="response-section">
+    <div class="container">
+        <h2 class="section-title">Your Turn... 💭</h2>
+        <p class="section-subtitle">Tell me what you're thinking. Be honest.</p>
+        
+        <div class="response-card">
+            <div class="response-options">
+                <h3 style="color: #ff80ab; margin-bottom: 2rem; text-align: center;">
+                    What's your answer?
+                </h3>
+                
+                <div class="final-choice-grid">
+                    <button class="choice-btn" onclick="selectFinalChoice(this, 'yes_try')">
+                        <span class="choice-icon">💝</span>
+                        <span class="choice-text">Yes. Let's try this. I'm scared but I'm in.</span>
+                    </button>
+                    
+                    <button class="choice-btn" onclick="selectFinalChoice(this, 'yes_feelings')">
+                        <span class="choice-icon">💕</span>
+                        <span class="choice-text">Yes. You're right. I do have feelings.</span>
+                    </button>
+                    
+                    <button class="choice-btn" onclick="selectFinalChoice(this, 'yes_running')">
+                        <span class="choice-icon">😳</span>
+                        <span class="choice-text">Yes. I've been running but I'm tired of it.</span>
+                    </button>
+                    
+                    <button class="choice-btn" onclick="selectFinalChoice(this, 'yes_see_where')">
+                        <span class="choice-icon">🌸</span>
+                        <span class="choice-text">Yes. Let's see where this goes.</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Follow-up Questions (shown after choice) -->
+            <div class="followup-section hidden" id="followupSection">
+                <h3 style="color: #ff80ab; margin: 3rem 0 2rem; text-align: center;">
+                    One more thing... ✨
+                </h3>
+                <p style="text-align: center; color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; font-size: 1.2rem;">
+                    When can we talk about this?
+                </p>
+                
+                <div class="followup-grid" id="followupGrid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+            
+            <!-- Optional Message Box (shown after followup) -->
+            <div class="message-section hidden" id="messageSection">
+                <h3 style="color: #ff80ab; margin: 3rem 0 1.5rem; text-align: center;">
+                    Want to say anything else? (Optional)
+                </h3>
+                <p style="text-align: center; color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem;">
+                    Any thoughts, feelings, or words for me? I'd love to hear them. 💭
+                </p>
+                
+                <textarea 
+                    id="responseMessage" 
+                    class="response-textarea" 
+                    placeholder="Type your thoughts here... (or leave blank)"
+                    maxlength="1000"
+                ></textarea>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn-submit-final" onclick="submitFinalResponse()">
+                        <span>Submit My Response 💕</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================== -->
+<!-- THANK YOU / LOADING SCREEN -->
+<!-- ========================================== -->
+<div class="thank-you-overlay hidden" id="thankYouOverlay">
+    <div class="thank-you-content">
+        <div class="thank-you-icon">💖</div>
+        <h1 class="thank-you-title">Thank You...</h1>
+        <p class="thank-you-text">
+            Thank you for being honest.<br>
+            Thank you for being brave.<br>
+            Thank you for giving us a chance.<br><br>
+            I promise I won't let you down. ❤️
+        </p>
+        <div class="loading-spinner"></div>
+        <p style="color: rgba(255, 255, 255, 0.7); margin-top: 1rem;">
+            Sending your response...
+        </p>
+    </div>
+</div>
+
+
     <!-- Final Section -->
     <section class="final-section">
         <div class="container">
