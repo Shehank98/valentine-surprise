@@ -126,7 +126,7 @@ Break it down into small steps. Take it one day at a time. One hour at a time if
 
 And remember - you don't have to do this alone. I'm here, cheering you on every step of the way. I'm your biggest fan, your loudest cheerleader, your strongest supporter.
 
-Now go out there and show the world what you're made of! I already know - you're made of pure awesomeness!
+Now go out there and show the world what you're made of! I already know - you're made of pure awesomeness! 🚀
 
 You've got this! 💪❤️`
     },
@@ -183,39 +183,60 @@ const memoryLocations = [
 // ========================================== 
 // Customize your playlist here!
 
+// OPTION 1: YouTube Video IDs (Recommended - Easy Setup)
+// To get YouTube ID: Go to YouTube, find the song, copy the ID from URL
+// Example: https://www.youtube.com/watch?v=2Vv-BfVoq4g -> ID is "2Vv-BfVoq4g"
+
 const playlist = [
     {
         title: "Perfect",
         artist: "Ed Sheeran",
-        note: "Because you ARE perfect, in every single way. This song reminds me of how I feel every time I'm with you - like everything is exactly as it should be. 💕"
+        note: "Because you ARE perfect, in every single way. This song reminds me of how I feel every time I'm with you - like everything is exactly as it should be. 💕",
+        youtubeId: "2Vv-BfVoq4g",  // Replace with actual YouTube video ID
+        audioUrl: ""  // OR use direct audio file URL (leave empty if using YouTube)
     },
     {
         title: "A Thousand Years",
         artist: "Christina Perri",
-        note: "I have loved you for a thousand years, and I'll love you for a thousand more. This song captures the timeless feeling of true love - that's what I feel for you. ⏳❤️"
+        note: "I have loved you for a thousand years, and I'll love you for a thousand more. This song captures the timeless feeling of true love - that's what I feel for you. ⏳❤️",
+        youtubeId: "rtOvBOTyX00",  // Replace with actual YouTube video ID
+        audioUrl: ""
     },
     {
         title: "Thinking Out Loud",
         artist: "Ed Sheeran",
-        note: "When your legs don't work like they used to before... I'll still be falling for you. Growing old with you sounds like the most beautiful adventure. 🌹"
+        note: "When your legs don't work like they used to before... I'll still be falling for you. Growing old with you sounds like the most beautiful adventure. 🌹",
+        youtubeId: "lp-EO5I60KA",  // Replace with actual YouTube video ID
+        audioUrl: ""
     },
     {
         title: "All of Me",
         artist: "John Legend",
-        note: "You have all of me - my heart, my soul, my everything. I love all of you, every beautiful and imperfect part. You're my end and my beginning. 💝"
+        note: "You have all of me - my heart, my soul, my everything. I love all of you, every beautiful and imperfect part. You're my end and my beginning. 💝",
+        youtubeId: "450p7goxZqg",  // Replace with actual YouTube video ID
+        audioUrl: ""
     },
     {
         title: "Make You Feel My Love",
         artist: "Adele",
-        note: "I would do anything to make you feel loved, to make you smile, to see you happy. This song is my promise to always be there for you, no matter what. 🌟"
+        note: "I would do anything to make you feel loved, to make you smile, to see you happy. This song is my promise to always be there for you, no matter what. 🌟",
+        youtubeId: "0put0_a--Ng",  // Replace with actual YouTube video ID
+        audioUrl: ""
     }
     // Add more songs here as your playlist grows!
     // {
     //     title: "Song Name",
     //     artist: "Artist Name",
-    //     note: "Why this song is special..."
+    //     note: "Why this song is special...",
+    //     youtubeId: "VIDEO_ID_HERE",  // For YouTube
+    //     audioUrl: ""  // OR "path/to/song.mp3" for direct audio file
     // }
 ];
+
+// OPTION 2: If you want to use direct audio files instead:
+// Upload MP3 files to your server and use:
+// audioUrl: "music/perfect.mp3"
+// And leave youtubeId empty
 
 // ========================================== 
 // SECTION 4: STAR MAP - CONFIGURATION
@@ -224,9 +245,9 @@ const playlist = [
 
 const starMapData = {
     // Update these when you have the actual date and location
-    date: "January 29, 2026", // Example: "January 15, 2026"
-    location: "Kalubowila, Sri Lanka", // Example: "Negombo, Sri Lanka"
-    coordinates: "6.8°N, 79.8°E", // Example: "7.2°N, 79.8°E"
+    date: "Coming Soon...", // Example: "January 15, 2026"
+    location: "Where it all began", // Example: "Negombo, Sri Lanka"
+    coordinates: "📍 To be updated", // Example: "7.2°N, 79.8°E"
     // You can update this later when you remember the exact date
     specialDateTimestamp: null // Example: new Date('2026-01-15').getTime()
 };
@@ -772,6 +793,34 @@ function createMapTrail() {
 // ========================================== 
 
 let currentSongIndex = -1;
+let audioPlayer = null;
+let youtubePlayer = null;
+
+// Initialize audio player
+function initAudioPlayer() {
+    // Create hidden audio element for direct MP3 playback
+    if (!audioPlayer) {
+        audioPlayer = new Audio();
+        audioPlayer.volume = 0.7; // 70% volume
+        
+        // When song ends, stop vinyl animation
+        audioPlayer.addEventListener('ended', function() {
+            const vinyl = document.querySelector('.vinyl-record');
+            if (vinyl) vinyl.classList.remove('playing');
+            updatePlayPauseIcon(false);
+        });
+        
+        // When song starts playing
+        audioPlayer.addEventListener('play', function() {
+            updatePlayPauseIcon(true);
+        });
+        
+        // When song is paused
+        audioPlayer.addEventListener('pause', function() {
+            updatePlayPauseIcon(false);
+        });
+    }
+}
 
 function playSong(index) {
     const song = playlist[index];
@@ -803,6 +852,112 @@ function playSong(index) {
     
     // Create music notes effect
     createMusicNotes();
+    
+    // PLAY THE ACTUAL MUSIC
+    playMusic(song);
+}
+
+function playMusic(song) {
+    // Stop any currently playing music
+    stopMusic();
+    
+    // Option 1: If using direct audio file (MP3)
+    if (song.audioUrl && song.audioUrl !== "") {
+        initAudioPlayer();
+        audioPlayer.src = song.audioUrl;
+        audioPlayer.play().catch(err => {
+            console.log("Audio playback failed:", err);
+            alert("Could not play audio. Please check the file path.");
+        });
+    }
+    // Option 2: If using YouTube
+    else if (song.youtubeId && song.youtubeId !== "") {
+        playYouTube(song.youtubeId);
+    }
+    else {
+        console.log("No audio source provided for this song");
+    }
+}
+
+function playYouTube(videoId) {
+    // Create or update YouTube player
+    const playerContainer = document.getElementById('youtubePlayerContainer');
+    
+    if (!playerContainer) {
+        console.error("YouTube player container not found");
+        return;
+    }
+    
+    // Clear previous player
+    playerContainer.innerHTML = '';
+    
+    // Create iframe for YouTube
+    const iframe = document.createElement('iframe');
+    iframe.width = '0';
+    iframe.height = '0';
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
+    iframe.allow = 'autoplay; encrypted-media';
+    iframe.style.display = 'none';
+    
+    playerContainer.appendChild(iframe);
+    
+    // Store reference
+    youtubePlayer = iframe;
+}
+
+function stopMusic() {
+    // Stop audio player
+    if (audioPlayer) {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+    }
+    
+    // Stop YouTube player
+    if (youtubePlayer) {
+        youtubePlayer.remove();
+        youtubePlayer = null;
+    }
+    
+    // Stop vinyl animation
+    const vinyl = document.querySelector('.vinyl-record');
+    if (vinyl) vinyl.classList.remove('playing');
+}
+
+// Add pause/play toggle functionality
+function togglePlayPause() {
+    if (currentSongIndex === -1) return;
+    
+    const vinyl = document.querySelector('.vinyl-record');
+    const playPauseIcon = document.getElementById('playPauseIcon');
+    
+    if (audioPlayer && !audioPlayer.paused) {
+        // Pause
+        audioPlayer.pause();
+        vinyl.classList.remove('playing');
+        if (playPauseIcon) playPauseIcon.textContent = '▶';
+    } else if (audioPlayer && audioPlayer.paused && audioPlayer.src) {
+        // Play
+        audioPlayer.play();
+        vinyl.classList.add('playing');
+        if (playPauseIcon) playPauseIcon.textContent = '⏸';
+    }
+}
+
+// Change volume
+function changeVolume(value) {
+    if (audioPlayer) {
+        audioPlayer.volume = value / 100;
+    }
+    // Note: YouTube iframe doesn't support volume control easily
+    // Would need YouTube IFrame API for that
+}
+
+// Update play/pause icon when song plays
+function updatePlayPauseIcon(isPlaying) {
+    const playPauseIcon = document.getElementById('playPauseIcon');
+    if (playPauseIcon) {
+        playPauseIcon.textContent = isPlaying ? '⏸' : '▶';
+    }
 }
 
 function createMusicNotes() {
