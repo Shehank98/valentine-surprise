@@ -191,23 +191,23 @@ const playlist = [
     {
         title: "Perfect",
         artist: "Ed Sheeran",
-        note: "Because you ARE perfect, in every single way. This song reminds me of how I feel every time I'm with you - like everything is exactly as it should be. 💕",
+        //note: "Because you ARE perfect, in every single way. This song reminds me of how I feel every time I'm with you - like everything is exactly as it should be. 💕",
         youtubeId: "",  // Replace with actual YouTube video ID
         audioUrl: "music/Perfect.mp3"  // OR use direct audio file URL (leave empty if using YouTube)
     },
     {
         title: "A Thousand Years",
         artist: "Christina Perri",
-        note: "I have loved you for a thousand years, and I'll love you for a thousand more. This song captures the timeless feeling of true love - that's what I feel for you. ⏳❤️",
+        //note: "I have loved you for a thousand years, and I'll love you for a thousand more. This song captures the timeless feeling of true love - that's what I feel for you. ⏳❤️",
         youtubeId: "",  // Replace with actual YouTube video ID
         audioUrl: "music/Thousand.mp3"
     },
     {
-        title: "Thinking Out Loud",
-        artist: "Ed Sheeran",
-        note: "When your legs don't work like they used to before... I'll still be falling for you. Growing old with you sounds like the most beautiful adventure. 🌹",
+        title: "Pem Sihine",
+        artist: "Pradeep Rangana",
+        //note: "When your legs don't work like they used to before... I'll still be falling for you. Growing old with you sounds like the most beautiful adventure. 🌹",
         youtubeId: "",  // Replace with actual YouTube video ID
-        audioUrl: "music/Thinking.mp3"
+        audioUrl: "music/pem.mp3"
     },
     
     // Add more songs here as your playlist grows!
@@ -232,7 +232,7 @@ const playlist = [
 
 const starMapData = {
     // Update these when you have the actual date and location
-    date: "January 29, 2026", // Example: "January 15, 2026"
+    date: "January 22, 2026", // Example: "January 15, 2026"
     location: "Where it all began", // Example: "Negombo, Sri Lanka"
     coordinates: "📍 To be updated", // Example: "7.2°N, 79.8°E"
     // You can update this later when you remember the exact date
