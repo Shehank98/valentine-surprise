@@ -209,20 +209,7 @@ const playlist = [
         youtubeId: "",  // Replace with actual YouTube video ID
         audioUrl: "music/Thinking.mp3"
     },
-    {
-        title: "All of Me",
-        artist: "John Legend",
-        note: "You have all of me - my heart, my soul, my everything. I love all of you, every beautiful and imperfect part. You're my end and my beginning. 💝",
-        youtubeId: "",  // Replace with actual YouTube video ID
-        audioUrl: ""
-    },
-    {
-        title: "Make You Feel My Love",
-        artist: "Adele",
-        note: "I would do anything to make you feel loved, to make you smile, to see you happy. This song is my promise to always be there for you, no matter what. 🌟",
-        youtubeId: "",  // Replace with actual YouTube video ID
-        audioUrl: ""
-    }
+    
     // Add more songs here as your playlist grows!
     // {
     //     title: "Song Name",
