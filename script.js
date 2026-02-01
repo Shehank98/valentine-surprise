@@ -435,6 +435,7 @@ setTimeout(() => {
 
 // Lightbox functionality
 function openLightbox(index) {
+trackPhotoViewed();
 currentPhotoIndex = index;
 const lightbox = document.getElementById('lightbox');
 const img = document.getElementById('lightboxImg');
@@ -664,6 +665,7 @@ resizeTimer = setTimeout(() => {
 // ========================================== 
 
 function openEnvelope(index) {
+    trackLetterOpened(index);
     const letter = letters[index];
     const modal = document.getElementById('letterModal');
     const title = document.getElementById('letterTitle');
@@ -810,6 +812,7 @@ function initAudioPlayer() {
 }
 
 function playSong(index) {
+    trackSongPlayed(index);
     const song = playlist[index];
     const title = document.getElementById('currentSongTitle');
     const artist = document.getElementById('currentSongArtist');
