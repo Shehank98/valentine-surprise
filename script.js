@@ -1335,6 +1335,18 @@ function submitFinalResponse() {
     
     // Celebration effect
     createMassiveCelebration();
+
+    setTimeout(() => {
+        overlay.classList.remove('active');
+        overlay.classList.add('hidden');
+        
+        // Scroll to top smoothly
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Optional: Show a final message
+        alert('Thank you! Your response has been sent. ❤️');
+}, 5000); // 5 seconds
+    
 }
 
 function sendCompleteReport() {
