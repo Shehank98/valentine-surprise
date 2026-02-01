@@ -193,28 +193,28 @@ const playlist = [
         artist: "Ed Sheeran",
         note: "Because you ARE perfect, in every single way. This song reminds me of how I feel every time I'm with you - like everything is exactly as it should be. 💕",
         youtubeId: "",  // Replace with actual YouTube video ID
-        audioUrl: "Perfect.mp3"  // OR use direct audio file URL (leave empty if using YouTube)
+        audioUrl: "music/Perfect.mp3"  // OR use direct audio file URL (leave empty if using YouTube)
     },
     {
         title: "A Thousand Years",
         artist: "Christina Perri",
         note: "I have loved you for a thousand years, and I'll love you for a thousand more. This song captures the timeless feeling of true love - that's what I feel for you. ⏳❤️",
         youtubeId: "",  // Replace with actual YouTube video ID
-        audioUrl: "Thousand.mp3"
+        audioUrl: "music/Thousand.mp3"
     },
     {
         title: "Thinking Out Loud",
         artist: "Ed Sheeran",
         note: "When your legs don't work like they used to before... I'll still be falling for you. Growing old with you sounds like the most beautiful adventure. 🌹",
         youtubeId: "",  // Replace with actual YouTube video ID
-        audioUrl: ""
+        audioUrl: "music/Thinking.mp3"
     },
     {
         title: "All of Me",
         artist: "John Legend",
         note: "You have all of me - my heart, my soul, my everything. I love all of you, every beautiful and imperfect part. You're my end and my beginning. 💝",
         youtubeId: "",  // Replace with actual YouTube video ID
-        audioUrl: "Thinking.mp3"
+        audioUrl: ""
     },
     {
         title: "Make You Feel My Love",
