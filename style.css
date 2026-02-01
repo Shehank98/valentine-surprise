@@ -1736,3 +1736,435 @@ to {
     font-size: 1rem;
 }
 }
+
+/* ========================================== */
+/* FINAL CONFESSION SECTION STYLES */
+/* ========================================== */
+
+.final-confession-section {
+    background: linear-gradient(135deg, #1a0a0f 0%, #2d1b2e 100%);
+    padding: 8rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.final-confession-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 64, 129, 0.1) 0%, transparent 70%);
+}
+
+.confession-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 4rem;
+    border: 2px solid rgba(255, 64, 129, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+.confession-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.confession-text {
+    font-size: 1.2rem;
+    line-height: 2;
+    color: rgba(255, 255, 255, 0.95);
+    text-align: left;
+}
+
+.confession-text strong {
+    color: #ff80ab;
+    font-weight: 600;
+}
+
+.confession-question {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff4081;
+    text-align: center;
+    margin: 2rem 0;
+    line-height: 1.6;
+}
+
+.confession-highlight {
+    font-size: 1.6rem !important;
+    background: linear-gradient(135deg, #ff1744 0%, #ff4081 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+/* ========================================== */
+/* RESPONSE SECTION STYLES */
+/* ========================================== */
+
+.response-section {
+    background: var(--dark);
+    padding: 6rem 0;
+}
+
+.response-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 4rem;
+    border: 2px solid rgba(255, 64, 129, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.final-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.choice-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 64, 129, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.choice-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.choice-btn:hover {
+    border-color: #ff4081;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 64, 129, 0.4);
+}
+
+.choice-btn:hover::before {
+    opacity: 0.1;
+}
+
+.choice-btn.selected {
+    background: var(--gradient);
+    border-color: transparent;
+    transform: scale(1.05);
+}
+
+.choice-btn.selected::before {
+    opacity: 1;
+}
+
+.choice-btn > * {
+    position: relative;
+    z-index: 1;
+}
+
+.choice-icon {
+    font-size: 2.5rem;
+    display: block;
+}
+
+.choice-text {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.choice-btn.selected .choice-text {
+    font-weight: 600;
+}
+
+/* Followup Section */
+.followup-section,
+.message-section {
+    animation: slideDown 0.6s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.followup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.followup-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 64, 129, 0.3);
+    border-radius: 20px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.followup-btn:hover {
+    background: rgba(255, 64, 129, 0.15);
+    border-color: #ff4081;
+    transform: translateX(10px);
+}
+
+.followup-btn.selected {
+    background: var(--gradient);
+    border-color: transparent;
+    transform: scale(1.05);
+}
+
+.followup-icon {
+    font-size: 1.5rem;
+}
+
+/* Response Textarea */
+.response-textarea {
+    width: 100%;
+    min-height: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 64, 129, 0.3);
+    border-radius: 20px;
+    padding: 1.5rem;
+    color: white;
+    font-size: 1.1rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+.response-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.response-textarea:focus {
+    outline: none;
+    border-color: #ff4081;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 20px rgba(255, 64, 129, 0.3);
+}
+
+.btn-submit-final {
+    background: var(--gradient);
+    border: none;
+    border-radius: 50px;
+    padding: 1.5rem 4rem;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(255, 23, 68, 0.4);
+}
+
+.btn-submit-final:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(255, 23, 68, 0.6);
+}
+
+/* ========================================== */
+/* THANK YOU OVERLAY */
+/* ========================================== */
+
+.thank-you-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.thank-you-overlay.active {
+    display: flex;
+    animation: fadeIn 0.6s ease;
+}
+
+.thank-you-content {
+    text-align: center;
+    animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.thank-you-icon {
+    font-size: 8rem;
+    margin-bottom: 2rem;
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10%, 30% {
+        transform: scale(1.1);
+    }
+    20%, 40% {
+        transform: scale(1);
+    }
+}
+
+.thank-you-title {
+    font-size: 4rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+}
+
+.thank-you-text {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 2;
+    margin-bottom: 3rem;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #ff4081;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ========================================== */
+/* RESPONSIVE */
+/* ========================================== */
+
+@media (max-width: 768px) {
+    .confession-card {
+        padding: 2.5rem 2rem;
+    }
+    
+    .confession-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .confession-question {
+        font-size: 1.3rem;
+    }
+    
+    .confession-highlight {
+        font-size: 1.4rem !important;
+    }
+    
+    .response-card {
+        padding: 2.5rem 2rem;
+    }
+    
+    .final-choice-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .choice-btn {
+        padding: 1.5rem;
+    }
+    
+    .choice-text {
+        font-size: 1.1rem;
+    }
+    
+    .followup-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .thank-you-icon {
+        font-size: 5rem;
+    }
+    
+    .thank-you-title {
+        font-size: 2.5rem;
+    }
+    
+    .thank-you-text {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .confession-text {
+        font-size: 1rem;
+    }
+    
+    .confession-question {
+        font-size: 1.1rem;
+    }
+    
+    .choice-icon {
+        font-size: 2rem;
+    }
+    
+    .choice-text {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+
+
