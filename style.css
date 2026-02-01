@@ -770,7 +770,720 @@ to {
 }
 }
 
-/* Responsive */
+
+/* ============================================
+   SURPRISE SECTIONS STYLES
+   ============================================ */
+
+/* ========================================== */
+/* SECTION 1: OPEN WHEN LETTERS */
+/* ========================================== */
+
+.open-when-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.envelopes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+    padding: 2rem 0;
+}
+
+.envelope-container {
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.envelope-container:hover {
+    transform: translateY(-10px);
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    transition: all 0.5s ease;
+}
+
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 140px;
+    background: linear-gradient(135deg, #fff5f8 0%, #ffe6f0 100%);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(135deg, #ff4081 0%, #ff80ab 100%);
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    transform-origin: top center;
+    transition: transform 0.5s ease;
+    box-shadow: 0 5px 20px rgba(255, 23, 68, 0.4);
+    z-index: 2;
+}
+
+.envelope-container:hover .envelope-flap {
+    transform: rotateX(-180deg);
+}
+
+.envelope-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ff1744;
+    text-align: center;
+    z-index: 3;
+    pointer-events: none;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+}
+
+/* Letter Modal */
+.letter-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.letter-modal.active {
+    display: flex;
+}
+
+.letter-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+.letter-content {
+    position: relative;
+    z-index: 10001;
+    max-width: 700px;
+    width: 100%;
+    animation: letterSlideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes letterSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-100px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.letter-paper {
+    background: linear-gradient(135deg, #fff9f0 0%, #fff5e6 100%);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    position: relative;
+}
+
+.letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 24px,
+        #ff80ab 24px,
+        #ff80ab 26px
+    );
+    opacity: 0.1;
+}
+
+.letter-title {
+    font-size: 2rem;
+    color: #ff1744;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.letter-body {
+    font-size: 1.15rem;
+    line-height: 2;
+    color: #333;
+    margin-bottom: 2rem;
+    font-family: 'Georgia', serif;
+}
+
+.letter-signature {
+    text-align: right;
+    font-size: 1.3rem;
+    color: #ff4081;
+    font-style: italic;
+    margin-top: 2rem;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.letter-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 64, 129, 0.5);
+    color: white;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.letter-close:hover {
+    background: var(--gradient);
+    transform: rotate(90deg);
+    border-color: transparent;
+}
+
+/* ========================================== */
+/* SECTION 2: MEMORY MAP */
+/* ========================================== */
+
+.memory-map-section {
+    background: var(--dark);
+    padding: 6rem 0;
+    position: relative;
+}
+
+.map-container {
+    max-width: 1000px;
+    margin: 3rem auto;
+    position: relative;
+}
+
+.map-background {
+    background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+    border-radius: 20px;
+    padding: 3rem;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 64, 129, 0.2);
+}
+
+.map-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+.map-markers {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.map-marker {
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: markerPulse 2s infinite;
+}
+
+.map-marker:hover {
+    transform: scale(1.2);
+    z-index: 10;
+}
+
+@keyframes markerPulse {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.marker-pin {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: var(--gradient);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 10px 30px rgba(255, 23, 68, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marker-pin::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.marker-icon {
+    position: absolute;
+    font-size: 1.5rem;
+    transform: rotate(45deg);
+    z-index: 2;
+}
+
+.marker-label {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ff1744;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.map-marker.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    animation: none;
+}
+
+.map-marker.locked:hover {
+    transform: none;
+}
+
+.map-marker.locked .marker-pin {
+    background: linear-gradient(135deg, #666 0%, #999 100%);
+}
+
+/* Memory Details Panel */
+.memory-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(255, 255, 255, 0.98);
+    max-width: 600px;
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.memory-details.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.memory-content {
+    padding: 3rem;
+    color: #333;
+}
+
+.memory-title {
+    font-size: 2rem;
+    color: #ff1744;
+    margin-bottom: 0.5rem;
+}
+
+.memory-date {
+    font-size: 1rem;
+    color: #ff4081;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.memory-photo {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.memory-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-text {
+    font-size: 1.5rem;
+    color: #999;
+}
+
+.memory-story {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.memory-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    color: #ff1744;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.memory-close:hover {
+    background: #ff1744;
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* ========================================== */
+/* SECTION 3: LOVE PLAYLIST */
+/* ========================================== */
+
+.playlist-section {
+    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+    padding: 6rem 0;
+}
+
+.music-player {
+    max-width: 800px;
+    margin: 3rem auto;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 64, 129, 0.2);
+}
+
+.now-playing {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 3rem;
+    border-bottom: 2px solid rgba(255, 64, 129, 0.2);
+    margin-bottom: 2rem;
+}
+
+.vinyl-record {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, #1a1a1a 0%, #000 70%);
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+.vinyl-record.playing {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.vinyl-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #ff1744 0%, #ff4081 100%);
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.vinyl-grooves {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: repeating-radial-gradient(
+        circle,
+        transparent,
+        transparent 3px,
+        rgba(255, 255, 255, 0.1) 3px,
+        rgba(255, 255, 255, 0.1) 4px
+    );
+}
+
+.song-info {
+    flex: 1;
+}
+
+.song-title {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.song-artist {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.song-note {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.playlist-item:hover {
+    background: rgba(255, 64, 129, 0.1);
+    border-color: var(--secondary);
+    transform: translateX(10px);
+}
+
+.playlist-item.active {
+    background: var(--gradient);
+    border-color: transparent;
+}
+
+.playlist-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    width: 40px;
+    text-align: center;
+}
+
+.playlist-item.active .playlist-number {
+    color: white;
+}
+
+.playlist-info {
+    flex: 1;
+}
+
+.playlist-title {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.playlist-artist {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.playlist-item.active .playlist-artist {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.playlist-icon {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.playlist-item.active .playlist-icon {
+    color: white;
+}
+
+/* ========================================== */
+/* SECTION 4: STAR MAP */
+/* ========================================== */
+
+.starmap-section {
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 100%);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.starmap-container {
+    max-width: 1000px;
+    margin: 3rem auto;
+    position: relative;
+}
+
+#starCanvas {
+    width: 100%;
+    height: 600px;
+    background: radial-gradient(ellipse at center, #1a1a3e 0%, #000 100%);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 64, 129, 0.2);
+}
+
+.starmap-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.date-display,
+.location-display,
+.coordinates-display {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 64, 129, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.date-display:hover,
+.location-display:hover,
+.coordinates-display:hover {
+    border-color: var(--secondary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 64, 129, 0.3);
+}
+
+.date-label,
+.location-label,
+.coordinates-label {
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.date-value,
+.location-value,
+.coordinates-value {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+.constellation-legend {
+    margin-top: 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 64, 129, 0.2);
+}
+
+.constellation-legend h4 {
+    color: var(--accent);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.constellation-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+}
+
+.constellation-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--gradient);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.8);
+    animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* ========================================== */
+/* RESPONSIVE DESIGN FOR ALL SECTIONS */
+/* ========================================== */
+
 @media (max-width: 768px) {
 .container {
     padding: 3rem 1.5rem;
@@ -806,6 +1519,66 @@ to {
     top: 20px;
     font-size: 40px;
 }
+
+.envelopes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+}
+
+.letter-paper {
+    padding: 2rem;
+}
+
+.letter-title {
+    font-size: 1.5rem;
+}
+
+.letter-body {
+    font-size: 1rem;
+}
+
+.now-playing {
+    flex-direction: column;
+    text-align: center;
+}
+
+.vinyl-record {
+    width: 120px;
+    height: 120px;
+}
+
+.song-title {
+    font-size: 1.5rem;
+}
+
+.map-background {
+    padding: 2rem;
+    min-height: 400px;
+}
+
+.map-markers {
+    height: 400px;
+}
+
+.memory-content {
+    padding: 2rem;
+}
+
+.memory-title {
+    font-size: 1.5rem;
+}
+
+.memory-photo {
+    height: 200px;
+}
+
+#starCanvas {
+    height: 400px;
+}
+
+.starmap-info {
+    grid-template-columns: 1fr;
+}
 }
 
 @media (max-width: 480px) {
@@ -839,6 +1612,36 @@ to {
 
 .btn-main, .btn-secondary, .btn-reveal, .btn-heart {
     padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+}
+
+.envelopes-grid {
+    grid-template-columns: 1fr;
+}
+
+.envelope {
+    height: 180px;
+}
+
+.envelope-label {
+    font-size: 1rem;
+}
+
+.music-player {
+    padding: 2rem 1.5rem;
+}
+
+.playlist-item {
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.playlist-number {
+    font-size: 1.2rem;
+    width: 30px;
+}
+
+.playlist-title {
     font-size: 1rem;
 }
 }
