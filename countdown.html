@@ -698,202 +698,204 @@ opacity: 0;
 </div>
 </div>
 
-    <script>
-        // ============================================
-        // CONFIGURATION
-        // ============================================
-        // SET YOUR TARGET DATE: February 14, 2025 at 00:00 (midnight)
-        const TARGET_DATE = new Date('2026-02-01T10:00:00').getTime();
+        <script>
+         // ============================================
+         // CONFIGURATION
+         // ============================================
+         // SET YOUR TARGET DATE: February 14, 2026 at 00:00 (midnight)
+         const TARGET_DATE = new Date('2026-02-01T12:10:00').getTime();
+         
+         // Where to redirect when countdown reaches zero
+         const REDIRECT_URL = 'main.html';
         
-        // Where to redirect when countdown reaches zero
-        const REDIRECT_URL = 'main.html';
-
-        // Time when countdown started (for progress bar calculation)
-        const START_DATE = new Date().getTime();
-
-        // ============================================
-        // CHECK ACCESS
-        // ============================================
-        // Verify user came from email gate
-        window.addEventListener('load', function() {
-            const accessGranted = sessionStorage.getItem('accessGranted');
-            if (!accessGranted) {
-                // Redirect back to email gate if no access
-                window.location.href = 'index.html';
-            }
-        });
-
-        // ============================================
-        // FLOATING HEARTS
-        // ============================================
-        function createFloatingHearts() {
-            const container = document.getElementById('heartsContainer');
-            const heartSymbols = ['❤️', '💕', '💖', '💗', '💝', '💓'];
-            
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
-                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                
-                container.appendChild(heart);
-                
-                setTimeout(() => {
-                    heart.remove();
-                }, 8000);
-            }, 500);
-        }
-
-        createFloatingHearts();
-
-        // ============================================
-        // COUNTDOWN TIMER
-        // ============================================
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = TARGET_DATE - now;
-
-            // Check if countdown is finished
-            if (distance < 0) {
-                document.querySelector('.countdown-card').style.display = 'none';
-                const revealAnim = document.getElementById('revealAnimation');
-                revealAnim.classList.add('active');
-                
-                // Create sparkle effects
-                createRevealSparkles();
-                
-                // Redirect after animation completes
-                setTimeout(() => {
-                    window.location.href = REDIRECT_URL;
-                }, 4000); // Changed to 4 seconds to let animation complete
-                
-                return;
-                }
-
-            // Calculate time units
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Update display
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-
-            // Update progress bar
-            const totalDuration = TARGET_DATE - START_DATE;
-            const elapsed = now - START_DATE;
-            const progress = Math.min((elapsed / totalDuration) * 100, 100);
-            
-            document.getElementById('progressBar').style.width = progress + '%';
-            
-            // Update progress text
-            const daysText = days > 0 ? `${days} day${days !== 1 ? 's' : ''}` : '';
-            const hoursText = hours > 0 ? `${hours} hour${hours !== 1 ? 's' : ''}` : '';
-            const minutesText = minutes > 0 ? `${minutes} minute${minutes !== 1 ? 's' : ''}` : '';
-            
-            let timeRemaining = '';
-            if (days > 0) {
-                timeRemaining = `${daysText} and ${hoursText} remaining`;
-            } else if (hours > 0) {
-                timeRemaining = `${hoursText} and ${minutesText} remaining`;
-            } else if (minutes > 0) {
-                timeRemaining = `${minutesText} remaining`;
-            } else {
-                timeRemaining = `Less than a minute remaining!`;
-            }
-            
-            document.getElementById('progressText').textContent = timeRemaining;
-
-            // Add pulsing effect when time is almost up
-            if (days === 0 && hours === 0 && minutes < 5) {
-                document.querySelectorAll('.time-unit').forEach(unit => {
-                    unit.style.animation = 'pulse 1s infinite';
-                });
-            }
-        }
-
-        // Add pulse animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes pulse {
-                0%, 100% {
-                    transform: scale(1);
-                    box-shadow: 0 0 0 rgba(255, 64, 129, 0);
-                }
-                50% {
-                    transform: scale(1.05);
-                    box-shadow: 0 0 30px rgba(255, 64, 129, 0.5);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Update countdown every second
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // ============================================
-        // PARTICLE EFFECT ON CLICK
-        // ============================================
-        document.addEventListener('click', function(e) {
-            const symbols = ['❤️', '💕', '💖', '✨'];
-            
-            for (let i = 0; i < 5; i++) {
-                const particle = document.createElement('div');
-                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                particle.style.position = 'fixed';
-                particle.style.left = e.clientX + 'px';
-                particle.style.top = e.clientY + 'px';
-                particle.style.fontSize = '20px';
-                particle.style.pointerEvents = 'none';
-                particle.style.zIndex = '9999';
-                
-                const angle = (Math.random() * Math.PI * 2);
-                const velocity = 50 + Math.random() * 50;
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                
-                particle.animate([
-                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
-                    { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
-                ], {
-                    duration: 1000,
-                    easing: 'ease-out'
-                });
-                
-                document.body.appendChild(particle);
-                setTimeout(() => particle.remove(), 1000);
-            }
-            // ============================================
-            // SPARKLE EFFECTS FOR REVEAL
-            // ============================================
-            function createRevealSparkles() {
-            const container = document.querySelector('.reveal-animation');
-            
-            setInterval(() => {
-                const sparkle = document.createElement('div');
-                sparkle.style.position = 'absolute';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.width = '6px';
-                sparkle.style.height = '6px';
-                sparkle.style.background = 'white';
-                sparkle.style.borderRadius = '50%';
-                sparkle.style.pointerEvents = 'none';
-                sparkle.style.animation = 'sparkle 1.5s ease-out forwards';
-                sparkle.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
-                
-                container.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 1500);
-            }, 100);
-            }
-        });
-    </script>
+         // Time when countdown started (for progress bar calculation)
+         const START_DATE = new Date().getTime();
+        
+         // ============================================
+         // CHECK ACCESS
+         // ============================================
+         // Verify user came from email gate
+         window.addEventListener('load', function() {
+             const accessGranted = sessionStorage.getItem('accessGranted');
+             if (!accessGranted) {
+                 // Redirect back to email gate if no access
+                 window.location.href = 'index.html';
+             }
+         });
+        
+         // ============================================
+         // FLOATING HEARTS
+         // ============================================
+         function createFloatingHearts() {
+             const container = document.getElementById('heartsContainer');
+             const heartSymbols = ['❤️', '💕', '💖', '💗', '💝', '💓'];
+             
+             setInterval(() => {
+                 const heart = document.createElement('div');
+                 heart.className = 'heart';
+                 heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                 heart.style.left = Math.random() * 100 + '%';
+                 heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                 heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                 
+                 container.appendChild(heart);
+                 
+                 setTimeout(() => {
+                     heart.remove();
+                 }, 8000);
+             }, 500);
+         }
+        
+         createFloatingHearts();
+        
+         // ============================================
+         // COUNTDOWN TIMER
+         // ============================================
+         function updateCountdown() {
+             const now = new Date().getTime();
+             const distance = TARGET_DATE - now;
+        
+             // Check if countdown is finished
+             if (distance < 0) {
+                 document.querySelector('.countdown-card').style.display = 'none';
+                 const revealAnim = document.getElementById('revealAnimation');
+                 revealAnim.classList.add('active');
+                 
+                 // Create sparkle effects
+                 createRevealSparkles();
+                 
+                 // Redirect after animation completes
+                 setTimeout(() => {
+                     window.location.href = REDIRECT_URL;
+                 }, 4000); // 4 seconds to let animation complete
+                 
+                 return;
+             }
+        
+             // Calculate time units
+             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+             // Update display
+             document.getElementById('days').textContent = String(days).padStart(2, '0');
+             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        
+             // Update progress bar
+             const totalDuration = TARGET_DATE - START_DATE;
+             const elapsed = now - START_DATE;
+             const progress = Math.min((elapsed / totalDuration) * 100, 100);
+             
+             document.getElementById('progressBar').style.width = progress + '%';
+             
+             // Update progress text
+             const daysText = days > 0 ? `${days} day${days !== 1 ? 's' : ''}` : '';
+             const hoursText = hours > 0 ? `${hours} hour${hours !== 1 ? 's' : ''}` : '';
+             const minutesText = minutes > 0 ? `${minutes} minute${minutes !== 1 ? 's' : ''}` : '';
+             
+             let timeRemaining = '';
+             if (days > 0) {
+                 timeRemaining = `${daysText} and ${hoursText} remaining`;
+             } else if (hours > 0) {
+                 timeRemaining = `${hoursText} and ${minutesText} remaining`;
+             } else if (minutes > 0) {
+                 timeRemaining = `${minutesText} remaining`;
+             } else {
+                 timeRemaining = `Less than a minute remaining!`;
+             }
+             
+             document.getElementById('progressText').textContent = timeRemaining;
+        
+             // Add pulsing effect when time is almost up
+             if (days === 0 && hours === 0 && minutes < 5) {
+                 document.querySelectorAll('.time-unit').forEach(unit => {
+                     unit.style.animation = 'pulse 1s infinite';
+                 });
+             }
+         }
+        
+         // Add pulse animation
+         const style = document.createElement('style');
+         style.textContent = `
+             @keyframes pulse {
+                 0%, 100% {
+                     transform: scale(1);
+                     box-shadow: 0 0 0 rgba(255, 64, 129, 0);
+                 }
+                 50% {
+                     transform: scale(1.05);
+                     box-shadow: 0 0 30px rgba(255, 64, 129, 0.5);
+                 }
+             }
+         `;
+         document.head.appendChild(style);
+        
+         // Update countdown every second
+         updateCountdown();
+         setInterval(updateCountdown, 1000);
+        
+         // ============================================
+         // SPARKLE EFFECTS FOR REVEAL
+         // ============================================
+         function createRevealSparkles() {
+             const container = document.querySelector('.reveal-animation');
+             
+             setInterval(() => {
+                 const sparkle = document.createElement('div');
+                 sparkle.style.position = 'absolute';
+                 sparkle.style.left = Math.random() * 100 + '%';
+                 sparkle.style.top = Math.random() * 100 + '%';
+                 sparkle.style.width = '6px';
+                 sparkle.style.height = '6px';
+                 sparkle.style.background = 'white';
+                 sparkle.style.borderRadius = '50%';
+                 sparkle.style.pointerEvents = 'none';
+                 sparkle.style.animation = 'sparkle 1.5s ease-out forwards';
+                 sparkle.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
+                 sparkle.style.zIndex = '5';
+                 
+                 container.appendChild(sparkle);
+                 
+                 setTimeout(() => sparkle.remove(), 1500);
+             }, 100);
+         }
+        
+         // ============================================
+         // PARTICLE EFFECT ON CLICK
+         // ============================================
+         document.addEventListener('click', function(e) {
+             const symbols = ['❤️', '💕', '💖', '✨'];
+             
+             for (let i = 0; i < 5; i++) {
+                 const particle = document.createElement('div');
+                 particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                 particle.style.position = 'fixed';
+                 particle.style.left = e.clientX + 'px';
+                 particle.style.top = e.clientY + 'px';
+                 particle.style.fontSize = '20px';
+                 particle.style.pointerEvents = 'none';
+                 particle.style.zIndex = '9999';
+                 
+                 const angle = (Math.random() * Math.PI * 2);
+                 const velocity = 50 + Math.random() * 50;
+                 const tx = Math.cos(angle) * velocity;
+                 const ty = Math.sin(angle) * velocity;
+                 
+                 particle.animate([
+                     { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                     { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+                 ], {
+                     duration: 1000,
+                     easing: 'ease-out'
+                 });
+                 
+                 document.body.appendChild(particle);
+                 setTimeout(() => particle.remove(), 1000);
+             }
+         });
+        </script>
 </body>
 </html>
