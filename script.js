@@ -162,10 +162,10 @@ I love you! ❤️`
 const memoryLocations = [
     {
         title: "Where We First Met",
-        date: "The beginning of everything ✨",
-        location: "The place where our story began",
+        date: "January 29th, 2026",
+        location: "Kalubowila, Sri Lanka",
         story: `This is where it all started. The moment I first saw you, I knew you were special. Even though we don't have pictures from that exact moment yet, this place will always hold a special meaning in my heart. It's where our journey together began, and I'll never forget how I felt that day. Every time I think about this place, I smile because it reminds me of how lucky I am to have found you. This is just the beginning of our story, and I can't wait to create more memories with you! 💝`,
-        photoUrl: "" // Leave empty for placeholder, or add a photo URL when you have one
+        photoUrl: "photos/image1.png" // Leave empty for placeholder, or add a photo URL when you have one
     },
     // Add more locations as your story grows!
     // Example:
@@ -232,7 +232,7 @@ const playlist = [
 
 const starMapData = {
     // Update these when you have the actual date and location
-    date: "Coming Soon...", // Example: "January 15, 2026"
+    date: "January 29, 2026", // Example: "January 15, 2026"
     location: "Where it all began", // Example: "Negombo, Sri Lanka"
     coordinates: "📍 To be updated", // Example: "7.2°N, 79.8°E"
     // You can update this later when you remember the exact date
