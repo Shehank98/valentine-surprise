@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Valentine's Day My Love ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="surprise-sections.css">
 </head>
 <body>
     <!-- Floating Hearts Background -->
@@ -114,6 +115,261 @@
         </div>
     </section>
 
+    <!-- ========================================== -->
+    <!-- NEW SECTION 1: OPEN WHEN LETTERS -->
+    <!-- ========================================== -->
+    <section class="open-when-section">
+        <div class="container">
+            <h2 class="section-title">Open When...</h2>
+            <p class="section-subtitle">Letters for every moment you need me 💌</p>
+            
+            <div class="envelopes-grid">
+                <!-- Envelope 1 -->
+                <div class="envelope-container" onclick="openEnvelope(0)">
+                    <div class="envelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body"></div>
+                        <div class="envelope-label">Open When<br>You Miss Me</div>
+                    </div>
+                </div>
+
+                <!-- Envelope 2 -->
+                <div class="envelope-container" onclick="openEnvelope(1)">
+                    <div class="envelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body"></div>
+                        <div class="envelope-label">Open When<br>You're Sad</div>
+                    </div>
+                </div>
+
+                <!-- Envelope 3 -->
+                <div class="envelope-container" onclick="openEnvelope(2)">
+                    <div class="envelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body"></div>
+                        <div class="envelope-label">Open When<br>You Need a Laugh</div>
+                    </div>
+                </div>
+
+                <!-- Envelope 4 -->
+                <div class="envelope-container" onclick="openEnvelope(3)">
+                    <div class="envelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body"></div>
+                        <div class="envelope-label">Open When<br>You Can't Sleep</div>
+                    </div>
+                </div>
+
+                <!-- Envelope 5 -->
+                <div class="envelope-container" onclick="openEnvelope(4)">
+                    <div class="envelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body"></div>
+                        <div class="envelope-label">Open When<br>You Need Motivation</div>
+                    </div>
+                </div>
+
+                <!-- Envelope 6 -->
+                <div class="envelope-container" onclick="openEnvelope(5)">
+                    <div class="envelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body"></div>
+                        <div class="envelope-label">Open When<br>You're Happy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Letter Modal -->
+    <div class="letter-modal" id="letterModal">
+        <div class="letter-modal-overlay" onclick="closeLetterModal()"></div>
+        <div class="letter-content">
+            <button class="letter-close" onclick="closeLetterModal()">&times;</button>
+            <div class="letter-paper">
+                <h3 class="letter-title" id="letterTitle"></h3>
+                <div class="letter-body" id="letterBody"></div>
+                <div class="letter-signature">With all my love,<br>Always yours ❤️</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- NEW SECTION 2: MEMORY MAP -->
+    <!-- ========================================== -->
+    <section class="memory-map-section">
+        <div class="container">
+            <h2 class="section-title">Our Special Places</h2>
+            <p class="section-subtitle">Every location holds a piece of our story 📍</p>
+            
+            <div class="map-container">
+                <div class="map-background">
+                    <!-- Decorative Map Lines -->
+                    <svg class="map-lines" viewBox="0 0 1000 600">
+                        <path d="M 100 300 Q 300 100 500 300 T 900 300" stroke="rgba(255, 64, 129, 0.2)" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                        <path d="M 150 400 Q 350 200 550 400 T 850 400" stroke="rgba(255, 64, 129, 0.15)" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                    </svg>
+                    
+                    <!-- Map Markers -->
+                    <div class="map-markers">
+                        <!-- Marker 1: First Meeting -->
+                        <div class="map-marker" style="left: 30%; top: 40%;" onclick="showMemoryDetails(0)">
+                            <div class="marker-pin">
+                                <div class="marker-icon">💝</div>
+                            </div>
+                            <div class="marker-label">Where We First Met</div>
+                        </div>
+
+                        <!-- Marker 2: Future Memory (Placeholder) -->
+                        <div class="map-marker locked" style="left: 55%; top: 30%;">
+                            <div class="marker-pin">
+                                <div class="marker-icon">🔒</div>
+                            </div>
+                            <div class="marker-label">Future Memory</div>
+                        </div>
+
+                        <!-- Marker 3: Future Memory (Placeholder) -->
+                        <div class="map-marker locked" style="left: 75%; top: 50%;">
+                            <div class="marker-pin">
+                                <div class="marker-icon">🔒</div>
+                            </div>
+                            <div class="marker-label">Future Memory</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Details Panel -->
+            <div class="memory-details" id="memoryDetails">
+                <button class="memory-close" onclick="closeMemoryDetails()">&times;</button>
+                <div class="memory-content">
+                    <h3 class="memory-title" id="memoryTitle"></h3>
+                    <p class="memory-date" id="memoryDate"></p>
+                    <div class="memory-photo" id="memoryPhoto">
+                        <div class="placeholder-text">📸 Photo coming soon...</div>
+                    </div>
+                    <p class="memory-story" id="memoryStory"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- NEW SECTION 3: LOVE PLAYLIST -->
+    <!-- ========================================== -->
+    <section class="playlist-section">
+        <div class="container">
+            <h2 class="section-title">Our Soundtrack</h2>
+            <p class="section-subtitle">Songs that remind me of you 🎵</p>
+            
+            <div class="music-player">
+                <div class="now-playing">
+                    <div class="vinyl-record">
+                        <div class="vinyl-center"></div>
+                        <div class="vinyl-grooves"></div>
+                    </div>
+                    <div class="song-info">
+                        <h3 class="song-title" id="currentSongTitle">Select a song</h3>
+                        <p class="song-artist" id="currentSongArtist">Choose from the playlist below</p>
+                        <p class="song-note" id="currentSongNote"></p>
+                    </div>
+                </div>
+
+                <div class="playlist">
+                    <div class="playlist-item" onclick="playSong(0)">
+                        <div class="playlist-number">01</div>
+                        <div class="playlist-info">
+                            <div class="playlist-title">Perfect</div>
+                            <div class="playlist-artist">Ed Sheeran</div>
+                        </div>
+                        <div class="playlist-icon">▶</div>
+                    </div>
+
+                    <div class="playlist-item" onclick="playSong(1)">
+                        <div class="playlist-number">02</div>
+                        <div class="playlist-info">
+                            <div class="playlist-title">A Thousand Years</div>
+                            <div class="playlist-artist">Christina Perri</div>
+                        </div>
+                        <div class="playlist-icon">▶</div>
+                    </div>
+
+                    <div class="playlist-item" onclick="playSong(2)">
+                        <div class="playlist-number">03</div>
+                        <div class="playlist-info">
+                            <div class="playlist-title">Thinking Out Loud</div>
+                            <div class="playlist-artist">Ed Sheeran</div>
+                        </div>
+                        <div class="playlist-icon">▶</div>
+                    </div>
+
+                    <div class="playlist-item" onclick="playSong(3)">
+                        <div class="playlist-number">04</div>
+                        <div class="playlist-info">
+                            <div class="playlist-title">All of Me</div>
+                            <div class="playlist-artist">John Legend</div>
+                        </div>
+                        <div class="playlist-icon">▶</div>
+                    </div>
+
+                    <div class="playlist-item" onclick="playSong(4)">
+                        <div class="playlist-number">05</div>
+                        <div class="playlist-info">
+                            <div class="playlist-title">Make You Feel My Love</div>
+                            <div class="playlist-artist">Adele</div>
+                        </div>
+                        <div class="playlist-icon">▶</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- NEW SECTION 4: STAR MAP -->
+    <!-- ========================================== -->
+    <section class="starmap-section">
+        <div class="container">
+            <h2 class="section-title">The Night We Met</h2>
+            <p class="section-subtitle">The stars aligned for us on this special night ✨</p>
+            
+            <div class="starmap-container">
+                <canvas id="starCanvas"></canvas>
+                
+                <div class="starmap-info">
+                    <div class="date-display">
+                        <div class="date-label">Our Special Date</div>
+                        <div class="date-value" id="specialDate">Coming Soon...</div>
+                    </div>
+                    <div class="location-display">
+                        <div class="location-label">Location</div>
+                        <div class="location-value" id="specialLocation">Where it all began</div>
+                    </div>
+                    <div class="coordinates-display">
+                        <div class="coordinates-label">Coordinates</div>
+                        <div class="coordinates-value">📍 To be updated</div>
+                    </div>
+                </div>
+
+                <div class="constellation-legend">
+                    <h4>Featured Constellations</h4>
+                    <div class="constellation-item">
+                        <span class="constellation-dot"></span>
+                        <span>Orion - The Hunter</span>
+                    </div>
+                    <div class="constellation-item">
+                        <span class="constellation-dot"></span>
+                        <span>Ursa Major - The Great Bear</span>
+                    </div>
+                    <div class="constellation-item">
+                        <span class="constellation-dot"></span>
+                        <span>Cassiopeia - The Queen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Interactive Message Section -->
     <section class="interactive-section">
         <div class="container">
@@ -129,7 +385,7 @@
                         I'm lucky to know you, and even luckier to have these memories.<br><br>
                         You're absolutely wonderful, and I hope this Valentine's Day is as special as you are! ❤️<br><br>
                         Happy Valentine's Day!
-                        </p>
+                    </p>
                 </div>
             </div>
             <button class="btn-reveal" id="revealBtn" onclick="revealMessage()">
@@ -164,5 +420,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="surprise-sections.js"></script>
 </body>
 </html>
