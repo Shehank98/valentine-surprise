@@ -192,35 +192,35 @@ const playlist = [
         title: "Perfect",
         artist: "Ed Sheeran",
         note: "Because you ARE perfect, in every single way. This song reminds me of how I feel every time I'm with you - like everything is exactly as it should be. 💕",
-        youtubeId: "2Vv-BfVoq4g",  // Replace with actual YouTube video ID
+        youtubeId: "2Vv-BfVoq4g&list=RD2Vv-BfVoq4g&start_radio=1",  // Replace with actual YouTube video ID
         audioUrl: ""  // OR use direct audio file URL (leave empty if using YouTube)
     },
     {
         title: "A Thousand Years",
         artist: "Christina Perri",
         note: "I have loved you for a thousand years, and I'll love you for a thousand more. This song captures the timeless feeling of true love - that's what I feel for you. ⏳❤️",
-        youtubeId: "rtOvBOTyX00",  // Replace with actual YouTube video ID
+        youtubeId: "tOvBOTyX00&list=RDrtOvBOTyX00&start_radio=1",  // Replace with actual YouTube video ID
         audioUrl: ""
     },
     {
         title: "Thinking Out Loud",
         artist: "Ed Sheeran",
         note: "When your legs don't work like they used to before... I'll still be falling for you. Growing old with you sounds like the most beautiful adventure. 🌹",
-        youtubeId: "lp-EO5I60KA",  // Replace with actual YouTube video ID
+        youtubeId: "lp-EO5I60KA&list=RDlp-EO5I60KA&start_radio=1",  // Replace with actual YouTube video ID
         audioUrl: ""
     },
     {
         title: "All of Me",
         artist: "John Legend",
         note: "You have all of me - my heart, my soul, my everything. I love all of you, every beautiful and imperfect part. You're my end and my beginning. 💝",
-        youtubeId: "450p7goxZqg",  // Replace with actual YouTube video ID
+        youtubeId: "450p7goxZqg&list=RD450p7goxZqg&start_radio=1",  // Replace with actual YouTube video ID
         audioUrl: ""
     },
     {
         title: "Make You Feel My Love",
         artist: "Adele",
         note: "I would do anything to make you feel loved, to make you smile, to see you happy. This song is my promise to always be there for you, no matter what. 🌟",
-        youtubeId: "0put0_a--Ng",  // Replace with actual YouTube video ID
+        youtubeId: "0put0_a--Ng&list=RD0put0_a--Ng&start_radio=1",  // Replace with actual YouTube video ID
         audioUrl: ""
     }
     // Add more songs here as your playlist grows!
