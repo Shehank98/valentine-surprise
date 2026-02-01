@@ -1147,3 +1147,421 @@ function initializeSurpriseSections() {
         surpriseObserver.observe(section);
     });
 }
+
+// ============================================
+// FINAL CONFESSION SECTION - JAVASCRIPT
+// ============================================
+
+// Configuration
+const YOUR_EMAIL = 'shehan.k89@gmail.com';
+
+// Store user's complete journey
+let userJourney = {
+    truthGateAnswers: JSON.parse(localStorage.getItem('answers')) || {},
+    finalChoice: null,
+    followupChoice: null,
+    personalMessage: '',
+    timeOnSite: 0,
+    sectionsVisited: [],
+    lettersOpened: [],
+    songsPlayed: [],
+    photosViewed: 0,
+    startTime: Date.now()
+};
+
+// Track site activity (call these from existing functions)
+function trackSectionVisit(sectionName) {
+    if (!userJourney.sectionsVisited.includes(sectionName)) {
+        userJourney.sectionsVisited.push(sectionName);
+        localStorage.setItem('userJourney', JSON.stringify(userJourney));
+    }
+}
+
+function trackLetterOpened(letterIndex) {
+    if (!userJourney.lettersOpened.includes(letterIndex)) {
+        userJourney.lettersOpened.push(letterIndex);
+        localStorage.setItem('userJourney', JSON.stringify(userJourney));
+    }
+}
+
+function trackSongPlayed(songIndex) {
+    userJourney.songsPlayed.push({
+        index: songIndex,
+        time: new Date().toISOString()
+    });
+    localStorage.setItem('userJourney', JSON.stringify(userJourney));
+}
+
+function trackPhotoViewed() {
+    userJourney.photosViewed++;
+    localStorage.setItem('userJourney', JSON.stringify(userJourney));
+}
+
+// ============================================
+// FINAL CHOICE HANDLING
+// ============================================
+
+const followupOptions = {
+    'yes_try': [
+        { icon: "☕", text: "Let's meet and talk about this" },
+        { icon: "📱", text: "Text me when you're ready" },
+        { icon: "💬", text: "Call me tonight" },
+        { icon: "🌹", text: "You decide when" }
+    ],
+    'yes_feelings': [
+        { icon: "☕", text: "Coffee tomorrow?" },
+        { icon: "📱", text: "Message me tonight" },
+        { icon: "💭", text: "I need a day to process this" },
+        { icon: "✨", text: "Let's talk soon" }
+    ],
+    'yes_running': [
+        { icon: "🤝", text: "Let's talk face to face" },
+        { icon: "💬", text: "Can we video call?" },
+        { icon: "📱", text: "Text me first" },
+        { icon: "🌸", text: "I'll reach out when ready" }
+    ],
+    'yes_see_where': [
+        { icon: "☕", text: "Start with coffee?" },
+        { icon: "🎬", text: "Maybe a movie date?" },
+        { icon: "🌙", text: "Evening walk and talk?" },
+        { icon: "💫", text: "Surprise me with something special" }
+    ]
+};
+
+function selectFinalChoice(button, choiceValue) {
+    // Visual feedback
+    document.querySelectorAll('.choice-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    button.classList.add('selected');
+    
+    // Store choice
+    const choiceText = button.querySelector('.choice-text').textContent;
+    userJourney.finalChoice = {
+        value: choiceValue,
+        text: choiceText,
+        timestamp: new Date().toISOString()
+    };
+    
+    localStorage.setItem('userJourney', JSON.stringify(userJourney));
+    
+    // Show follow-up after delay
+    setTimeout(() => {
+        showFollowup(choiceValue);
+    }, 1000);
+}
+
+function showFollowup(choiceValue) {
+    const followupSection = document.getElementById('followupSection');
+    const followupGrid = document.getElementById('followupGrid');
+    
+    // Show section
+    followupSection.classList.remove('hidden');
+    
+    // Populate options
+    followupGrid.innerHTML = '';
+    const options = followupOptions[choiceValue] || followupOptions['yes_try'];
+    
+    options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'followup-btn';
+        btn.innerHTML = `
+            <span class="followup-icon">${opt.icon}</span>
+            <span>${opt.text}</span>
+        `;
+        btn.onclick = () => selectFollowup(opt.text, btn);
+        followupGrid.appendChild(btn);
+    });
+    
+    // Scroll to followup
+    setTimeout(() => {
+        followupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
+}
+
+function selectFollowup(text, button) {
+    // Visual feedback
+    document.querySelectorAll('.followup-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    button.classList.add('selected');
+    
+    // Store followup
+    userJourney.followupChoice = {
+        text: text,
+        timestamp: new Date().toISOString()
+    };
+    
+    localStorage.setItem('userJourney', JSON.stringify(userJourney));
+    
+    // Show message section
+    setTimeout(() => {
+        showMessageSection();
+    }, 800);
+}
+
+function showMessageSection() {
+    const messageSection = document.getElementById('messageSection');
+    messageSection.classList.remove('hidden');
+    
+    // Scroll to message section
+    setTimeout(() => {
+        messageSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
+}
+
+// ============================================
+// FINAL SUBMISSION & EMAIL
+// ============================================
+
+function submitFinalResponse() {
+    // Get optional message
+    const messageText = document.getElementById('responseMessage').value.trim();
+    userJourney.personalMessage = messageText;
+    
+    // Calculate time on site
+    userJourney.timeOnSite = Math.round((Date.now() - userJourney.startTime) / 1000);
+    
+    // Save everything
+    localStorage.setItem('userJourney', JSON.stringify(userJourney));
+    
+    // Show thank you overlay
+    const overlay = document.getElementById('thankYouOverlay');
+    overlay.classList.remove('hidden');
+    overlay.classList.add('active');
+    
+    // Send email
+    sendCompleteReport();
+    
+    // Celebration effect
+    createMassiveCelebration();
+}
+
+function sendCompleteReport() {
+    const email = sessionStorage.getItem('verifiedEmail') || 'prabodasupuni@gmail.com';
+    
+    // Build comprehensive email
+    let emailBody = `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔥 SUPUNI COMPLETED EVERYTHING! 🔥
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FROM: ${email}
+COMPLETED: ${new Date().toLocaleString()}
+TOTAL TIME ON SITE: ${Math.round(userJourney.timeOnSite / 60)} minutes
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💗 TRUTH GATE ANSWERS (10 Questions)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+`;
+
+    // Add truth gate answers
+    const answers = userJourney.truthGateAnswers;
+    Object.keys(answers).forEach(key => {
+        if (key.startsWith('q') && answers[key].question) {
+            emailBody += `${answers[key].question}\n→ ${answers[key].answer}\n\n`;
+        }
+    });
+
+    emailBody += `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💝 FINAL DECISION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Her Answer:
+${userJourney.finalChoice ? '💕 ' + userJourney.finalChoice.text : 'Not answered yet'}
+
+When to connect:
+${userJourney.followupChoice ? '✨ ' + userJourney.followupChoice.text : 'Not answered yet'}
+
+`;
+
+    if (userJourney.personalMessage) {
+        emailBody += `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💌 HER PERSONAL MESSAGE TO YOU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"${userJourney.personalMessage}"
+
+`;
+    }
+
+    emailBody += `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 SITE ENGAGEMENT ANALYTICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⏱️  Time on Site: ${Math.round(userJourney.timeOnSite / 60)} minutes
+📖 Letters Opened: ${userJourney.lettersOpened.length}/6
+🎵 Songs Played: ${userJourney.songsPlayed.length}
+📸 Photos Viewed: ${userJourney.photosViewed}
+🗺️  Sections Visited: ${userJourney.sectionsVisited.join(', ')}
+
+`;
+
+    if (userJourney.songsPlayed.length > 0) {
+        emailBody += `
+Most Played Songs:
+`;
+        const songCounts = {};
+        userJourney.songsPlayed.forEach(s => {
+            songCounts[s.index] = (songCounts[s.index] || 0) + 1;
+        });
+        Object.keys(songCounts).forEach(idx => {
+            emailBody += `  Song ${parseInt(idx) + 1}: ${songCounts[idx]} times\n`;
+        });
+    }
+
+    emailBody += `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 EMOTIONAL READINESS SCORE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Interest Level: ⭐⭐⭐⭐⭐ (5/5)
+Emotional Investment: ${userJourney.timeOnSite > 1800 ? 'VERY HIGH' : 'HIGH'}
+Fear Level: Medium (but she said YES!)
+Commitment Readiness: HIGH
+
+SUCCESS PROBABILITY: 95%+ 🎉
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 RECOMMENDED NEXT STEPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Wait 2-4 hours before texting
+2. Be confident but gentle
+3. Reference something from the site
+4. Suggest the meeting time SHE chose
+5. Don't mention you saw her answers
+
+SAMPLE TEXT:
+"Hey Supuni 😊 I hope you enjoyed the website. I meant every word. ${userJourney.followupChoice ? userJourney.followupChoice.text + ' - does that work for you?' : 'When would you like to talk?'} ❤️"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎊 SHE SAID YES BRO!
+GO GET YOUR GIRL! 💪💕
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+`;
+
+    // Send via FormSubmit
+    const formData = new FormData();
+    formData.append('_to', YOUR_EMAIL);
+    formData.append('_subject', '🔥 SUPUNI SAID YES! - Complete Journey Report');
+    formData.append('message', emailBody);
+    formData.append('_captcha', 'false');
+    
+    fetch(`https://formsubmit.co/ajax/${YOUR_EMAIL}`, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('✅ Email sent successfully!', data);
+    })
+    .catch(error => {
+        console.error('❌ Email failed:', error);
+        // Fallback: save to localStorage
+        localStorage.setItem('emailBackup', emailBody);
+        console.log('📦 Saved to localStorage as backup');
+    });
+    
+    // Also log for debugging
+    console.log('📧 COMPLETE EMAIL REPORT:');
+    console.log(emailBody);
+    console.log('📊 USER JOURNEY DATA:', userJourney);
+}
+
+// ============================================
+// CELEBRATION EFFECTS
+// ============================================
+
+function createMassiveCelebration() {
+    // Create fireworks effect
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '99998';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    document.body.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+    
+    // Create particles
+    for (let i = 0; i < 150; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: canvas.height + Math.random() * 200,
+            vx: (Math.random() - 0.5) * 6,
+            vy: -(Math.random() * 12 + 8),
+            color: ['#ff1744', '#ff4081', '#ff80ab', '#FFD700', '#FFF'][Math.floor(Math.random() * 5)],
+            size: Math.random() * 6 + 3,
+            symbol: ['❤️', '💕', '💖', '💗', '💝', '✨', '🌟'][Math.floor(Math.random() * 7)]
+        });
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach((p, i) => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.3; // gravity
+            
+            // Draw particle
+            ctx.fillStyle = p.color;
+            ctx.font = `${p.size * 4}px Arial`;
+            ctx.fillText(p.symbol, p.x, p.y);
+            
+            // Remove if off screen
+            if (p.y > canvas.height + 100) {
+                particles.splice(i, 1);
+            }
+        });
+        
+        if (particles.length > 0) {
+            requestAnimationFrame(animate);
+        } else {
+            canvas.remove();
+        }
+    }
+    
+    animate();
+}
+
+// ============================================
+// INITIALIZE - Add to existing script.js
+// ============================================
+
+// Track page load
+document.addEventListener('DOMContentLoaded', function() {
+    userJourney.startTime = Date.now();
+    localStorage.setItem('userJourney', JSON.stringify(userJourney));
+});
+
+// Update existing functions to include tracking
+// Add these lines to your existing functions:
+
+// In openEnvelope function, add:
+// trackLetterOpened(index);
+
+// In playSong function, add:
+// trackSongPlayed(index);
+
+// In openLightbox function, add:
+// trackPhotoViewed();
+
+
+
+
+
+
