@@ -757,17 +757,20 @@ opacity: 0;
 
             // Check if countdown is finished
             if (distance < 0) {
-                // COUNTDOWN FINISHED!
                 document.querySelector('.countdown-card').style.display = 'none';
-                document.getElementById('revealAnimation').classList.add('active');
+                const revealAnim = document.getElementById('revealAnimation');
+                revealAnim.classList.add('active');
                 
-                // Redirect after 3 seconds
+                // Create sparkle effects
+                createRevealSparkles();
+                
+                // Redirect after animation completes
                 setTimeout(() => {
                     window.location.href = REDIRECT_URL;
-                }, 3000);
+                }, 4000); // Changed to 4 seconds to let animation complete
                 
                 return;
-            }
+                }
 
             // Calculate time units
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -865,6 +868,30 @@ opacity: 0;
                 
                 document.body.appendChild(particle);
                 setTimeout(() => particle.remove(), 1000);
+            }
+            // ============================================
+            // SPARKLE EFFECTS FOR REVEAL
+            // ============================================
+            function createRevealSparkles() {
+            const container = document.querySelector('.reveal-animation');
+            
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.style.position = 'absolute';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.width = '6px';
+                sparkle.style.height = '6px';
+                sparkle.style.background = 'white';
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.animation = 'sparkle 1.5s ease-out forwards';
+                sparkle.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
+                
+                container.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1500);
+            }, 100);
             }
         });
     </script>
