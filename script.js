@@ -1153,7 +1153,7 @@ function initializeSurpriseSections() {
 // ============================================
 
 // Configuration
-const YOUR_EMAIL = 'shehan.k89@gmail.com';
+const YOUR_EMAIL = 'shehan.k98@gmail.com';
 
 // Store user's complete journey
 let userJourney = {
