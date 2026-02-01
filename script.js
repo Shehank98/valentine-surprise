@@ -126,7 +126,7 @@ Break it down into small steps. Take it one day at a time. One hour at a time if
 
 And remember - you don't have to do this alone. I'm here, cheering you on every step of the way. I'm your biggest fan, your loudest cheerleader, your strongest supporter.
 
-Now go out there and show the world what you're made of! I already know - you're made of pure awesomeness! 🚀
+Now go out there and show the world what you're made of! I already know - you're made of pure awesomeness!
 
 You've got this! 💪❤️`
     },
@@ -224,9 +224,9 @@ const playlist = [
 
 const starMapData = {
     // Update these when you have the actual date and location
-    date: "Coming Soon...", // Example: "January 15, 2026"
-    location: "Where it all began", // Example: "Negombo, Sri Lanka"
-    coordinates: "📍 To be updated", // Example: "7.2°N, 79.8°E"
+    date: "January 29, 2026", // Example: "January 15, 2026"
+    location: "Kalubowila, Sri Lanka", // Example: "Negombo, Sri Lanka"
+    coordinates: "6.8°N, 79.8°E", // Example: "7.2°N, 79.8°E"
     // You can update this later when you remember the exact date
     specialDateTimestamp: null // Example: new Date('2026-01-15').getTime()
 };
