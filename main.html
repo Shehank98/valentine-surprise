@@ -264,7 +264,7 @@
             
             <div class="music-player">
                 <div class="now-playing">
-                    <div class="vinyl-record">
+                    <div class="vinyl-record" onclick="togglePlayPause()" title="Click to pause/play">
                         <div class="vinyl-center"></div>
                         <div class="vinyl-grooves"></div>
                     </div>
@@ -272,6 +272,20 @@
                         <h3 class="song-title" id="currentSongTitle">Select a song</h3>
                         <p class="song-artist" id="currentSongArtist">Choose from the playlist below</p>
                         <p class="song-note" id="currentSongNote"></p>
+                        
+                        <!-- Music Controls -->
+                        <div class="music-controls">
+                            <button class="control-btn" onclick="stopMusic()" title="Stop">
+                                <span>⏹</span>
+                            </button>
+                            <button class="control-btn" onclick="togglePlayPause()" title="Play/Pause">
+                                <span id="playPauseIcon">▶</span>
+                            </button>
+                            <div class="volume-control">
+                                <span>🔊</span>
+                                <input type="range" id="volumeSlider" min="0" max="100" value="70" oninput="changeVolume(this.value)">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -321,6 +335,9 @@
                         <div class="playlist-icon">▶</div>
                     </div>
                 </div>
+                
+                <!-- Hidden YouTube Player Container -->
+                <div id="youtubePlayerContainer" style="display: none;"></div>
             </div>
         </div>
     </section>
